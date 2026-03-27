@@ -1,0 +1,31 @@
+{
+  "name": "mini-trello",
+  "version": "1.0.0",
+  "description": "мини Trello - Kanban система за управление на проекти с Node.js, Express и SQLite",
+  "main": "server/src/index.js",
+  "scripts": {
+    "start": "node server/src/index.js",
+    "dev": "node --watch server/src/index.js",
+    "db:init": "node server/src/database/init.js",
+    "db:seed": "node server/src/database/seed.js",
+    "setup": "npm install && npm run db:init && npm run db:seed"
+  },
+  "keywords": [
+    "kanban",
+    "trello",
+    "sqlite",
+    "express",
+    "mini-trello"
+  ],
+  "author": "OpenAI Codex",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-sqlite3": "^0.9.15",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "helmet": "^8.1.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}

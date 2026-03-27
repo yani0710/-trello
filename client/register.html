@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>мини Trello | Регистрация</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body class="auth-body">
+  <main class="auth-layout">
+    <section class="auth-hero">
+      <div>
+        <div class="brand">
+          <div class="brand-badge">mT</div>
+          <div>
+            <h1>мини Trello</h1>
+            <p class="muted" style="color: rgba(255,255,255,0.82);">Създай профил и организирай проектите си с Kanban подход.</p>
+          </div>
+        </div>
+        <div style="margin-top: 48px;">
+          <h2>Лек setup, реална бизнес логика</h2>
+          <p>Регистрация, роли, бордове, членове, история на задачите и администраторски панел в едно демо приложение.</p>
+        </div>
+      </div>
+      <div>
+        <p>След регистрация ще бъдеш влязъл автоматично и ще отидеш към dashboard-а.</p>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <div class="auth-panel">
+        <h2>Регистрация</h2>
+        <p class="muted">Създай нов потребител с роля „Потребител“.</p>
+        <div id="registerNotice" class="notice"></div>
+        <form id="registerForm">
+          <div class="field">
+            <label for="username">Потребителско име</label>
+            <input class="input" id="username" name="username" required minlength="3" maxlength="50" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" required />
+          </div>
+          <div class="field">
+            <label for="password">Парола</label>
+            <input class="input" id="password" name="password" type="password" required minlength="6" />
+          </div>
+          <button class="btn btn-primary" type="submit">Създай профил</button>
+        </form>
+        <p style="margin-top: 18px;">Имаш профил? <a href="/login.html" style="color: var(--accent); font-weight: 700;">Вход</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/register.js"></script>
+</body>
+</html>

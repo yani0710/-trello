@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>мини Trello | Вход</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body class="auth-body">
+  <main class="auth-layout">
+    <section class="auth-hero">
+      <div>
+        <div class="brand">
+          <div class="brand-badge">mT</div>
+          <div>
+            <h1>мини Trello</h1>
+            <p class="muted" style="color: rgba(255,255,255,0.82);">Kanban система за управление на проекти, задачи и екипи.</p>
+          </div>
+        </div>
+        <div style="margin-top: 48px;">
+          <h2>Подреден workflow за училищни и екипни проекти</h2>
+          <p>Създавай бордове, следи задачи по колони, мести карти, коментирай и управлявай достъпа на участниците.</p>
+        </div>
+      </div>
+      <div>
+        <p><strong>Demo admin:</strong> admin@mini-trello.local / admin123</p>
+        <p><strong>Demo user:</strong> maria@mini-trello.local / user1234</p>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <div class="auth-panel">
+        <h2>Вход</h2>
+        <p class="muted">Използвай своя профил, за да достъпиш бордовете си.</p>
+        <div id="loginNotice" class="notice"></div>
+        <form id="loginForm">
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" required />
+          </div>
+          <div class="field">
+            <label for="password">Парола</label>
+            <input class="input" id="password" name="password" type="password" required minlength="6" />
+          </div>
+          <button class="btn btn-primary" type="submit">Влез</button>
+        </form>
+        <p style="margin-top: 18px;">Нямаш профил? <a href="/register.html" style="color: var(--accent); font-weight: 700;">Регистрация</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>мини Trello | Board</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">mT</div>
+        <div>
+          <h1 id="boardTitle" style="margin-bottom: 4px;">Board</h1>
+          <p class="muted" id="boardDescription">Зареждане...</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="btn" href="/dashboard.html">Dashboard</a>
+        <a class="btn" id="adminLink" href="/admin.html" style="display:none;">Админ панел</a>
+        <button class="btn btn-secondary" id="logoutBtn">Изход</button>
+      </div>
+    </header>
+
+    <section class="board-layout">
+      <main>
+        <div class="board-toolbar panel">
+          <div>
+            <h2 style="margin-bottom: 6px;">Kanban изглед</h2>
+            <p class="muted" id="boardMeta">Зареждане на данни...</p>
+          </div>
+          <div class="inline-actions">
+            <select class="select" id="sortSelect" style="min-width: 180px;">
+              <option value="position">Сортиране: последно създадени</option>
+              <option value="priority">Сортиране: приоритет</option>
+              <option value="due_date">Сортиране: краен срок</option>
+            </select>
+            <select class="select" id="assigneeFilter" style="min-width: 180px;"></select>
+            <button class="btn btn-secondary" id="createTaskBtn">Нова задача</button>
+          </div>
+        </div>
+
+        <div class="kanban-scroll">
+          <div id="columnsContainer" class="kanban-columns"></div>
+        </div>
+      </main>
+
+      <aside class="members-panel">
+        <h3>Участници и управление</h3>
+        <div id="boardStats"></div>
+
+        <div style="margin-top: 18px;">
+          <h4>Членове</h4>
+          <div id="membersList"></div>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <h4>Покани потребител</h4>
+          <div id="inviteNotice" class="notice"></div>
+          <form id="inviteForm">
+            <div class="field">
+              <label for="inviteEmail">Email</label>
+              <input class="input" id="inviteEmail" type="email" required />
+            </div>
+            <button class="btn btn-primary" type="submit">Добави в борда</button>
+          </form>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <h4>Нова колона</h4>
+          <div id="columnNotice" class="notice"></div>
+          <form id="columnForm">
+            <div class="field">
+              <label for="columnTitle">Заглавие</label>
+              <input class="input" id="columnTitle" required maxlength="80" />
+            </div>
+            <button class="btn btn-secondary" type="submit">Добави колона</button>
+          </form>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <button class="btn btn-danger" id="deleteBoardBtn">Изтрий борда</button>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <dialog id="taskDialog" class="dialog">
+    <div class="task-modal">
+      <div class="list-row" style="margin-bottom: 16px;">
+        <h2 id="taskDialogTitle">Нова задача</h2>
+        <button class="btn" type="button" data-close-dialog="taskDialog">Затвори</button>
+      </div>
+      <div id="taskNotice" class="notice"></div>
+      <form id="taskForm">
+        <input type="hidden" id="taskId" />
+        <input type="hidden" id="originalColumnId" />
+        <div class="field">
+          <label for="taskTitle">Заглавие</label>
+          <input class="input" id="taskTitle" required maxlength="140" />
+        </div>
+        <div class="field">
+          <label for="taskDescription">Описание</label>
+          <textarea class="textarea" id="taskDescription" maxlength="4000"></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="taskColumn">Колона</label>
+            <select class="select" id="taskColumn"></select>
+          </div>
+          <div class="field">
+            <label for="taskAssignee">Отговорник</label>
+            <select class="select" id="taskAssignee"></select>
+          </div>
+        </div>
+        <div class="grid-3">
+          <div class="field">
+            <label for="taskDueDate">Краен срок</label>
+            <input class="input" id="taskDueDate" type="datetime-local" />
+          </div>
+          <div class="field">
+            <label for="taskPriority">Приоритет</label>
+            <select class="select" id="taskPriority">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="taskColor">Етикет цвят</label>
+            <input class="input" id="taskColor" type="color" value="#2563eb" />
+          </div>
+        </div>
+        <div class="inline-actions">
+          <button class="btn btn-primary" type="submit">Запази</button>
+          <button class="btn btn-danger" id="deleteTaskBtn" type="button" style="display:none;">Изтрий задача</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog id="taskDetailsDialog" class="dialog">
+    <div class="task-modal">
+      <div class="list-row" style="margin-bottom: 16px;">
+        <h2>Детайли по задачата</h2>
+        <button class="btn" type="button" data-close-dialog="taskDetailsDialog">Затвори</button>
+      </div>
+      <div id="taskDetailsContent"></div>
+      <div style="margin-top: 18px;">
+        <h3>Добави коментар</h3>
+        <div id="commentNotice" class="notice"></div>
+        <form id="commentForm">
+          <input type="hidden" id="commentTaskId" />
+          <div class="field">
+            <textarea class="textarea" id="commentContent" maxlength="1000" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Публикувай коментар</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/board.js"></script>
+</body>
+</html>

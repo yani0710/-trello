@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>мини Trello | Профил</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">mT</div>
+        <div>
+          <h1 style="margin-bottom: 4px;">Потребителски профил</h1>
+          <p class="muted">Редакция на основната информация за акаунта.</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="btn" href="/dashboard.html">Dashboard</a>
+        <button class="btn btn-secondary" id="logoutBtn">Изход</button>
+      </div>
+    </header>
+
+    <section class="grid-2">
+      <div class="panel">
+        <h2>Данни за профила</h2>
+        <div id="profileNotice" class="notice"></div>
+        <form id="profileForm">
+          <div class="field">
+            <label for="username">Потребителско име</label>
+            <input class="input" id="username" name="username" required maxlength="50" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" required />
+          </div>
+          <button class="btn btn-primary" type="submit">Запази промените</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>Акаунт</h2>
+        <div id="profileMeta"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/profile.js"></script>
+</body>
+</html>

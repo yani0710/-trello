@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>мини Trello | Dashboard</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge">mT</div>
+        <div>
+          <h1 style="margin-bottom: 4px;">мини Trello</h1>
+          <p class="muted" id="dashboardGreeting">Зареждане...</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="btn" href="/profile.html">Профил</a>
+        <a class="btn" id="adminLink" href="/admin.html" style="display:none;">Админ панел</a>
+        <button class="btn btn-secondary" id="logoutBtn">Изход</button>
+      </div>
+    </header>
+
+    <section class="grid-4" id="statsGrid"></section>
+
+    <section class="grid-2" style="margin-top: 24px; align-items: start;">
+      <div class="panel">
+        <h2>Моите бордове</h2>
+        <p class="muted">Списък с всички бордове, до които имаш достъп.</p>
+        <div id="boardsList" class="board-grid"></div>
+      </div>
+
+      <aside class="panel">
+        <h2>Нов борд</h2>
+        <div id="boardNotice" class="notice"></div>
+        <form id="createBoardForm">
+          <div class="field">
+            <label for="boardTitle">Име</label>
+            <input class="input" id="boardTitle" name="title" required maxlength="120" />
+          </div>
+          <div class="field">
+            <label for="boardDescription">Описание</label>
+            <textarea class="textarea" id="boardDescription" name="description" maxlength="600"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Създай борд</button>
+        </form>
+      </aside>
+    </section>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/common.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>
